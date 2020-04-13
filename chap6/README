@@ -1,0 +1,19 @@
+Chapter 6
+
+What pointers are and how they are defined
+
+How to obtain the address of a variable
+
+How to create memeory for new variables while your program is executing
+
+How to release memeory that you've allocated dynamically
+
+The many hazards of raw dynamic memory allocation and what the much safer alternatives are that you have at your disposal
+
+The difference between raw pointers and smart pointers
+
+How to create and use smart pointers
+
+What a reference is and how it differs from a pointer
+
+How you can use a referece inh a range-based for loop
