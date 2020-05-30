@@ -16,16 +16,39 @@ std::ifstream open_parse_file();
 
 int main () 
 {
+
     // Get the file
-    open_parse_file();
+    std::ifstream file {open_parse_file()};
+    std::vector<std::pair<std::string, unsigned>> words {};
 
     // while not eof
+    while (!file.eof())
+    {
+        std::string line {};
+
         //read line
+        std::getline(file, line);
+
+        std::cout << "Line: \n\t" << line << "\n";
+
 
         // parse line
+    }
 
     // close file
+    if (file.is_open())
+    {
+        file.close();
+    }
 
     // display results
+
+    std::cout << std::endl;
+
     return 0;
+}
+
+std::ifstream open_parse_file()
+{
+    //"../../data/moby_dick.txt"
 }

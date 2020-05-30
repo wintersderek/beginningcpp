@@ -3,17 +3,27 @@
 
 #include <memory>
 #include <iostream>
+
 void test_it(long* test);
 
 int main()
 {
-    long* value {};
+    long value {};
 
-    test_it(value);
+    test_it(&value);
 
-    *value = 5;
-    std::cout << "Before: " << *value << "\n";
-    test_it(value);
+    value = 5;
+    std::cout << "Before: " << value << "\n";
+    test_it(&value);
+
+    std::cout << "Passing a pointer" << "\n"
+              << "-----------------" << "\n";
+
+    long* pLong {};
+    test_it(pLong);
+    std::cout << "pLong After: " << pLong << "\n";
+
+    std::cout << std::endl;
 
     return 0;
 }
@@ -22,12 +32,11 @@ void test_it(long* test)
 {
     if (test == nullptr)
     {
-        std::cout << "Test is null!";
+        std::cout << "Test is null!\n";
     }
     else
     {
         *test += 10;
-        std::cout << "Value of test: " << *test;
-        std::cout << std::endl;
+        std::cout << "Value of test: " << *test << "\n";
     }
 }
