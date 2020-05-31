@@ -48,7 +48,29 @@ int main ()
     return 0;
 }
 
-std::ifstream open_parse_file()
+/*
+open_parse_file
+    - Ask user for a file name
+    - Attempt to open the file
+    - Return the file pointer or nullptr if not open
+*/
+std::ifstream* open_parse_file(std::ifstream* file)
 {
     //"../../data/moby_dick.txt"
+    std::string file_name {};
+    std::cout << "What file would you like to parse? ";
+    std::getline(std::cin, file_name);
+
+    std::clog << "Opening " << file_name << " for parsing...\n";
+
+    file->open(file_name);
+
+    if (file->is_open())
+    {
+        return file;
+    }
+    else
+    {
+        return nullptr;
+    }
 }
