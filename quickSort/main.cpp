@@ -29,6 +29,8 @@ void swap(Words& words, size_t first, size_t second);
 void sort(Words& words);
 void sort(Words& words, size_t start, size_t end);
 
+void print_it(const Words& words);
+
 int main ()
 {
     const auto separators {" ,.!?\"\n"};
@@ -56,6 +58,54 @@ int main ()
 
     std::cout << std::endl;
     return 0;
+}
+
+void sort (Words& words, size_t start, size_t end)
+{
+    std::cout << "\tsort [" << start << "] to [" << end << "]\n";
+    if (!(end > start))
+    {
+        return;
+    }
+    // Pick an arbitrary element in the set to be the pivot
+    swap(words, start, ((start + end) / 2));
+    size_t current {start};
+
+    for (size_t i {start +1}; i <= end; ++i) 
+    {
+        if (*words[i] < *words[start])
+        {
+            // This will put all elements less than start directly after
+            // start.
+            //std::cout << *words[i] << " < " << *words[start] << "  ";
+            swap(words, ++current, i);
+        }
+    }
+
+    // Put start after all elements ordered in the for loop
+    swap(words, start, current);
+    print_it(words);
+
+    if (current > start)
+    {
+        // We have a block of elements on the left of the pivot
+        sort(words, start, (current - 1));
+    }
+
+    if (current < end)
+    {
+        // We have a block of elements on the right of the pivot
+        sort(words, (current + 1), end);
+    }
+}
+
+void sort(Words& words)
+{
+    if (words.size() > 0)
+    {
+        std::cout << "Beginning sort...\n";
+        sort(words, 0, (words.size() - 1));
+    }
 }
 
 size_t max_word_length(const Words& words)
@@ -114,6 +164,19 @@ void swap(Words& words, size_t first, size_t second)
         auto ptr {words[first]};
         words[first] = words[second];
         words[second] = ptr;
-        std::swap(words[first], words[second]);
+        //std::swap(words[first], words[second]);
     }
+    else
+    {
+        std::cout << "Invalid swap...\n";
+    }   
+}
+
+void print_it(const Words& words)
+{
+    for(auto& p: words)
+    {
+        std::cout << *p << " ";
+    }
+    std::cout << "\n";
 }
