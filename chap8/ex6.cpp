@@ -28,9 +28,12 @@ void print_average(const std::vector<unsigned> &grades);
 void print_median(const std::vector<unsigned> &grades);
 void print_standard_deviation(const std::vector<unsigned> &grades);
 void print_grades(const std::vector<unsigned>& grades);
+double get_mean(const std::vector<unsigned>& grades);
 
 int main()
 {
+    // 100 99 98 97 85 95 76 89 69 72 13 52 34 65 99 100 56 45 73 64 89 78 79 77 75 -1
+
     std::vector<unsigned> grades{get_grades()};
 
     if (grades.size() > 0)
@@ -164,12 +167,7 @@ void print_array(const unsigned grades[], size_t count)
 
 void print_average(const std::vector<unsigned> &grades)
 {
-    int sum {};
-    for(auto& g : grades)
-    {
-        sum += g;
-    }
-    std::cout << "Average: " << (sum / grades.size()) << "\n"; 
+    std::cout << "Average: " << static_cast<double>(get_mean(grades)) << "\n"; 
 }
 
 void print_median(const std::vector<unsigned> &grades)
@@ -187,14 +185,28 @@ void print_median(const std::vector<unsigned> &grades)
         //Median is the middle when there are odd number of values.
         median = grades[((grades.size() / 2) + 1)];
     }
-    
-    
 
-    
+    std::cout << "Median: " << median << "\n";
 }
 
 void print_standard_deviation(const std::vector<unsigned> &grades)
 {
+    if (grades.size() == 0) return;
+
+    double mean {get_mean(grades)};
+    double summation {};
+
+    // Sum the grade - mean squared
+    for(auto& grade : grades)
+    {
+        summation += (grade - mean) * (grade - mean);
+    }
+
+    // Divide by number of grades and get the square root
+    double standard_deviation { std::sqrt((summation / grades.size())) };
+    std::cout << "Standard Deviation : " << standard_deviation << "\n"
+              << "Variance: " << (standard_deviation * standard_deviation)
+              << "\n";
 }
 
 void print_grades(const std::vector<unsigned> &grades)
@@ -202,5 +214,23 @@ void print_grades(const std::vector<unsigned> &grades)
     for(auto& u : grades)
     {
         std::cout << u << "\n";
+    }
+}
+
+double get_mean(const std::vector<unsigned>& grades)
+{
+    double result {};
+
+    if (grades.size() > 0)
+    {
+        for(auto& grade : grades)
+        {
+            result += grade;
+        }
+        return (result / grades.size());
+    }
+    else
+    {
+        return result;
     }
 }
