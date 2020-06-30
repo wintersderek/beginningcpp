@@ -12,7 +12,10 @@ template <typename T> T larger(T a, T b);
 template <> int* larger(int* a, int* b);
 template <typename T> T larger(const T data[], size_t size);
 template <typename T> T larger(const std::vector<T>& data);
-//template <typename T> T* larger(T* a, T* B);
+
+/* Template for multiple parameters */
+template <typename TReturn, typename TArg1, typename TArg2> 
+TReturn larger (TArg1 a, TArg2 b);
 
 int main()
 {
@@ -37,9 +40,18 @@ int main()
 
     std::vector<char> v {'a', ';', '&', 'A', 'Z', 'b'};
     std::cout << "Vector<char>: " << larger(v) << "\n";
+    
+    /* Show multiple args for template */
+    std::cout << "Multiple (no types): " << larger<double, int, double>(5, 3.14) << "\n";
 
     std::cout << std::endl;
     return 0;
+}
+
+template <typename TReturn, typename TArg1, typename TArg2> 
+TReturn larger (TArg1 a, TArg2 b)
+{
+    return (a > b) ? a : b;
 }
 
 template <typename T>
