@@ -1,6 +1,8 @@
 /*
 Power definition
 */
+template <typename T>
+const T pi {3.1415926535897932385L};
 
 double power(double x, int n)
 {
