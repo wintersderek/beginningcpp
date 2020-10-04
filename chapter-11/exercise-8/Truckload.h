@@ -44,8 +44,7 @@ public:
         Package* pCurrent {nullptr};
         Package* pTail {nullptr};
 
-        // Make the constructor private, and ensure only a TruckLoad can 
-        // create it.
+        // Make constructor private, and ensure only TruckLoad can create it.
         friend class TruckLoad;
         explicit Iterator (Package* start, Package* end) : 
             pHead {start}, pTail {end} {}
