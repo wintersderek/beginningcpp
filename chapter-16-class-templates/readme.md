@@ -1,4 +1,5 @@
 # Chapter 16 Class Templates
+## Final Page 658
 In this chapter you will learn the following materials
 - What a class template is and how it is defined
 - What an instance of a class template is and how it is created
