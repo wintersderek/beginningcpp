@@ -4,7 +4,7 @@ treat functions like any other variable.  This chapter discusses what
 C++ has to offer in terms of First-Class functions.
 ## Topics
 - What a function pointer is and what you use it for
-- The limitations of function pointers and how tro overcome them using standard
+- The limitations of function pointers and how to overcome them using standard
   object-oriented techniques and operator overloading
 - What a lambda expression is
 - How you define a lamda expression
